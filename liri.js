@@ -15,6 +15,12 @@ var spotify = new Spotify({
   secret: spotifyKey.secret
 });
 
+for(i=4; i<process.argv.length; i++){
+    requestItem = requestItem + "+" + process.argv[i]
+    console.log(requestItem)
+}
+
+
 var Twitter = require('twitter');
 var client = new Twitter({
     consumer_key: twitterKey.consumer_key,
@@ -43,7 +49,7 @@ var spotifySong = function(){
         }
         else{
             console.log(data.tracks.items[0].artists[0].name)
-            console.log(requestItem)
+            console.log(data.tracks.items[0].name)
             console.log(data.tracks.items[0].preview_url)
             console.log(data.tracks.items[0].album.name)
         }
