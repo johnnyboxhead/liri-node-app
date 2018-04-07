@@ -24,14 +24,15 @@ var client = new Twitter({
 });
 
 if (action === "do-what-it-says") {
-    fs.readFile("random.txt", "upf8", function(error, data){
+    fs.readFile("random.txt", "utf8", function(error, data){
         var splitData = data.split(",")
-        console.log(splitData)
+        action = splitData[0];
+        requestItem = splitData[1];
+        spotifySong();
     })
-    action = "spotify-this-song"
 }
 
-if (action === "spotify-this-song"){
+var spotifySong = function(){
     if(!requestItem){
         requestItem = "The Sign"
     }
@@ -47,6 +48,10 @@ if (action === "spotify-this-song"){
             console.log(data.tracks.items[0].album.name)
         }
     });
+}
+
+if (action === "spotify-this-song"){
+    spotifySong()
 }
 
 if (action === "my-tweets"){
